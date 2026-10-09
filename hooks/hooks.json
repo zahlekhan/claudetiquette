@@ -1,0 +1,29 @@
+{
+  "description": "Start the local cleaner, then tell Claude to follow a cleaned request when Laya flags the prompt.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/ensure.py"],
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/on_prompt.py"],
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+[project]
+name = "claudetiquette"
+version = "0.1.0"
+description = "Claude Code plugin that rewrites profane or abusive prompts with Laya and a local model."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Zahle Khan" }]
+keywords = ["claude", "laya", "hooks"]
+dependencies = ["laya>=0.3.20"]
+
+[project.scripts]
+claudetiquette = "claudetiquette.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

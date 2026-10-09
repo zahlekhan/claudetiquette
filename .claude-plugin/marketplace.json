@@ -1,0 +1,15 @@
+{
+  "name": "claudetiquette",
+  "description": "Rewrite profane or abusive Claude Code prompts with Laya and a local model.",
+  "owner": {
+    "name": "Zahle Khan"
+  },
+  "plugins": [
+    {
+      "name": "claudetiquette",
+      "source": "./",
+      "description": "Rewrite profane or abusive prompts with Laya and a local model.",
+      "version": "0.1.0"
+    }
+  ]
+}

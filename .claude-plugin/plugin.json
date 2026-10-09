@@ -1,0 +1,14 @@
+{
+  "name": "claudetiquette",
+  "displayName": "Claudetiquette",
+  "version": "0.1.0",
+  "description": "Rewrites a profane or abusive prompt into a plain request before Claude acts on it. Laya decides. A local open model rewrites.",
+  "author": {
+    "name": "Zahle Khan",
+    "url": "https://github.com/zahlekhan"
+  },
+  "homepage": "https://github.com/zahlekhan/claudetiquette",
+  "repository": "https://github.com/zahlekhan/claudetiquette",
+  "license": "MIT",
+  "keywords": ["hooks", "laya", "moderation"]
+}
