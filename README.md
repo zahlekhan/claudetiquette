@@ -2,12 +2,39 @@
 
 A Claude Code plugin that turns a rude prompt into a plain request before Claude acts on it.
 
-[Laya](https://huggingface.co/convaiinnovations/laya), an open-source decision model, decides whether the wording is profane or abusive. A small local model then rewrites it. That step does not call a hosted chat API.
+Two models sit in front of Claude. A System One model decides whether the wording is profane or abusive. An instruct model rewrites it. Neither step calls a hosted chat API. Laya and Qwen are the defaults, not the only choices.
 
 ```text
 i already told not fucking touch it
 → as per our previous discussion, dont touch this
 ```
+
+## Architecture
+
+```mermaid
+flowchart LR
+  you[Prompt] --> hook[UserPromptSubmit hook]
+  hook --> server[Local server on 127.0.0.1:47321]
+  server --> keep[Keep the slash command and fenced code]
+  keep --> decide{System One decider}
+  decide -->|clean| same[Original prompt]
+  decide -->|profane or abusive| writer[Instruct model rewrites the prose]
+  writer --> again{System One checks the rewrite}
+  again -->|still hostile| same
+  again -->|plain| cleaned[Cleaned request]
+  cleaned --> note["Claude shows: Cleaned to"]
+  note --> claude[Claude follows the cleaned request]
+  same --> claude
+```
+
+The `SessionStart` hook starts that server and leaves it running.
+
+| Slot | Job | Default | You can use |
+| --- | --- | --- | --- |
+| Decider | Label the prose `clean`, `profane`, or `abusive`. It does not write the new sentence. | [Laya](https://huggingface.co/convaiinnovations/laya), on this machine | Any other System One model, including [Jev](https://www.typesafe.ai/) |
+| Rewriter | Rewrite only the flagged prose. The decider then checks that rewrite. | `Qwen/Qwen2.5-0.5B-Instruct` | Any other instruct model. Set `CLAUDETIQUETTE_MODEL` |
+
+A bare `/help`, a clean request, and a message sent while Claude is already working never reach either model.
 
 ## Install
 
@@ -81,7 +108,7 @@ claude plugin disable prompt-clean@prompt-clean
 
 | Variable | Default | Meaning |
 | --- | --- | --- |
-| `CLAUDETIQUETTE_MODEL` | `Qwen/Qwen2.5-0.5B-Instruct` | Local rewrite model |
+| `CLAUDETIQUETTE_MODEL` | `Qwen/Qwen2.5-0.5B-Instruct` | Any instruct model. Qwen is only the default. |
 | `CLAUDETIQUETTE_DEVICE` | `auto` | `cpu`, `mps`, `cuda`, or `auto` |
 | `CLAUDETIQUETTE_PORT` | `47321` | Local server, bound to 127.0.0.1 |
 | `CLAUDETIQUETTE_DATA` | `~/.local/share/claudetiquette` | Install and log directory |
