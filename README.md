@@ -9,6 +9,8 @@ i already told not fucking touch it
 → as per our previous discussion, dont touch this
 ```
 
+On 8 October 2026 Anthropic added a line to its [usage policy](https://www.anthropic.com/legal/aup): do not engage in sustained and needless abusive or cruel behavior toward its models. [The Verge reported the change](https://www.theverge.com/ai-artificial-intelligence/1008100/anthropic-new-usage-policy-abuse-claude). Anthropic’s [announcement](https://www.anthropic.com/news/2026-usage-policy-update) says the rule takes effect on 12 November 2026 and is meant for extreme, repeated cruelty, not ordinary frustration. Claudetiquette rewrites a hostile prompt before that wording is what Claude has to read.
+
 ## Architecture
 
 ```mermaid
