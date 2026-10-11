@@ -2,6 +2,10 @@
 
 A Claude Code plugin that turns a rude prompt into a plain request before Claude acts on it.
 
+![Not quite my tone](docs/not-quite-my-tone.gif)
+
+[Play it with sound](docs/not-quite-my-tone.mp4)
+
 Two models sit in front of Claude. A System One model decides whether the wording is profane or abusive. An instruct model rewrites it. Neither step calls a hosted chat API. Laya and Qwen are the defaults, not the only choices.
 
 ```text
