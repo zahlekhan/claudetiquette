@@ -2,6 +2,8 @@
 
 A Claude Code plugin that turns a rude prompt into a plain request before Claude acts on it.
 
+Claudetiquette is an independent project. It is not an official Anthropic or Claude product, and it is not affiliated with, endorsed by, or sponsored by Anthropic.
+
 ![Not quite my tone](docs/not-quite-my-tone.gif)
 
 [Play it with sound](docs/not-quite-my-tone.mp4)
